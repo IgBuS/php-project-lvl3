@@ -29,5 +29,5 @@ Route::post('/domains', function (Request $request) {
 
 Route::get('/domains', function () {
     $domains = DB::select('select * from domains ORDER BY id ASC');
-    return view('domain.index', ['domains' => $domains]);
+    return view('domains.index', ['domains' => $domains]);
 })->name('domains');
