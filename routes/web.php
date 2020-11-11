@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +22,12 @@ Route::get('/', function () {
 
 Route::post('/domains', function (Request $request) {
     $url = $request->input('domain[name]');
-    $creatTime = Carbon::now()->toDateTimeString();
+    $creatTime = Carbon::now();
     DB::insert('insert into domains (name, created_at) values (?, ?)', [$url, $creatTime]);
     return view('main');
-})
+});
+
+Route::get('/domains', function () {
+    $domains = DB::select('select * from domains ORDER BY id ASC');
+    return view('domain.index', ['domains' => $domains]);
+})->name('domains');
