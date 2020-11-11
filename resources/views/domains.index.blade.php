@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php foreach ($domains as $domain) : ?>
     <p> <?= "ID: " . htmlspecialchars($domain['id']); ?><p>
     <p> <?= "Name: " . htmlspecialchars($domain['name']); ?><p>
