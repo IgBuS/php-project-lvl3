@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('main');
-});
+})->name('main');
+
+Route::post('/domains', function (Request $request) {
+    $url = $request->input('domain[name]');
+    $creatTime = Carbon::now()->toDateTimeString();
+    DB::insert('insert into domains (name, created_at) values (?, ?)', [$url, $creatTime]);
+    return view('main');
+})
