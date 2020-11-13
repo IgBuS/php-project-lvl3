@@ -28,6 +28,6 @@ Route::post('/domains', function (Request $request) {
 });
 
 Route::get('/domains', function () {
-    
+    $domains = [1, 1, 1];//DB::select('select * from domains ORDER BY id ASC');
     return view('domains.index', ['domains' => $domains]);
 })->name('domains');
