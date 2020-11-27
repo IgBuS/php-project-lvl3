@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ Route::get('/', function () {
 })->name('main');
 
 Route::post('/domains', function (Request $request) {
-    $url = $request->input("domain[name]");
+    $url = Request::input('domain');
     $creatTime = Carbon::now()->toDateTimeString();
     $id = DB::table('domains')->insertGetId(
         ['name' => $url, 'updated_at' => $creatTime, 'created_at' => $creatTime]
