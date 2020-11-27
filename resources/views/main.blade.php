@@ -1,21 +1,5 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Scripts -->
-        <script src="https://pacific-temple-99321.herokuapp.com/js/app.js" defer></script>
-
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-        <!-- Styles -->
-        <link href="https://pacific-temple-99321.herokuapp.com/css/app.css" rel="stylesheet">
-    </head>
     <body class="d-flex flex-column">
         <header>
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
