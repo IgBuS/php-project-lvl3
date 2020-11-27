@@ -28,7 +28,7 @@
                     <h1 class="display-3">Page Analyzer</h1>
                     <p class="lead">Check web pages for free</p>
                     <form action="https://pacific-temple-99321.herokuapp.com/domains" method="post" class="d-flex justify-content-center">
-                        {{csrf_field()}}
+                        @csrf
                             <input type="text" name="domain[name]" value="" class="form-control form-control-lg" placeholder="https://www.example.com">
                         <button type="submit" class="btn btn-lg btn-primary ml-3 px-5 text-uppercase">Check</button>
                     </form>
