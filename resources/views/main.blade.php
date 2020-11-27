@@ -4,9 +4,6 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="9Fz0U5g6uKm3MNp5gZNYiBjQ3GtY9xUQPkCATv1x">
-
         <title>Laravel</title>
 
         <!-- Scripts -->
