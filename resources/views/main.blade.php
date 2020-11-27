@@ -46,8 +46,8 @@
                 <div class="col-12 col-md-10 col-lg-8 mx-auto text-white">
                     <h1 class="display-3">Page Analyzer</h1>
                     <p class="lead">Check web pages for free</p>
-                    <form action="https://pacific-temple-99321.herokuapp.com/domains" method="post" class="d-flex justify-content-center">
-                        <input type="hidden" name="_token" value="9Fz0U5g6uKm3MNp5gZNYiBjQ3GtY9xUQPkCATv1x">                        <input type="text" name="domain[name]" value="" class="form-control form-control-lg" placeholder="https://www.example.com">
+                    <form action="http://homestead.local/domains" method="post" class="d-flex justify-content-center">
+                      <input type="text" name="domain[name]" value="" class="form-control form-control-lg" placeholder="https://www.example.com">
                         <button type="submit" class="btn btn-lg btn-primary ml-3 px-5 text-uppercase">Check</button>
                     </form>
                 </div>

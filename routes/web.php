@@ -20,14 +20,14 @@ Route::get('/', function () {
     return view('main');
 })->name('main');
 
-Route::post('/domains', function (Request $request) {
-    $url = $request->input('domain[name]');
-    $creatTime = Carbon::now();
-    DB::insert('insert into domains (name, created_at) values (?, ?)', [$url, $creatTime]);
-    return view('main');
+Route::post('/domains', function () {
+    $url = Request::input('domain');//$request->domain[name];
+    $creatTime = Carbon::now()->toDateTimeString();
+    //DB::insert('insert into domains (name, created_at) values (?, ?)', [$url, $creatTime]);
+    return redirect('main');
 });
 
 Route::get('/domains', function () {
-    $domains = ['id' => 'id', 'nmae' => 'name', 'created_at' => 'created_at', 'updated_at' => "updated_at"];//DB::select('select * from domains ORDER BY id ASC');
-    return view('domains.index', ['domains' => $domains]);
+    $domains = DB::select('select * from domains');
+    return view('domains_index', ['domains' => $domains]);
 })->name('domains');
