@@ -26,7 +26,7 @@ Route::post('/domains', function () {
     $id = DB::table('domains')->insertGetId(
         ['name' => $url, 'updated_at' => $creatTime, 'created_at' => $creatTime]
     );
-    return redirect('main');
+    return redirect()->rout('main');
 });
 
 Route::get('/domains', function () {
