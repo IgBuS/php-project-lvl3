@@ -22,7 +22,8 @@ Route::get('/', function () {
 })->name('main');
 
 Route::post('/domains', function (Request $request) {
-    $url = Request::input('domain');
+    $domain = Request::input('domain');
+    $url = parse_url($domain['name']);
     $creatTime = Carbon::now()->toDateTimeString();
     $id = DB::table('domains')->insertGetId(
         ['name' => $url, 'updated_at' => $creatTime, 'created_at' => $creatTime]
