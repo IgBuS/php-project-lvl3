@@ -32,6 +32,7 @@ Route::post('/domains', function (Request $request) {
 });
 
 Route::get('/domains', function () {
-    $domains = DB::select('select * from domains');
+    //$domains = DB::select('select * from domains');
+    $domains = DB::table('domains')->get();
     return view('domains_index', ['domains' => $domains]);
 })->name('domains');
