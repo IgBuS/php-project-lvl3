@@ -1,17 +1,8 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+@section('title', 'Page Title')
 
-    <title>Domains</title>
-  </head>
-  <body>
-    <h1>Domains</h1>
+@section('content')
     <table class="table">
   <thead>
     <tr>
@@ -22,15 +13,16 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($domains as $domain)
+    @foreach ($urls as $url)
     <tr>
-      <th scope="row">{{ $domain->id }}</th>
-      <td>{{ $domain->name }}</td>
-      <td>{{ $domain->created_at }}</td>
-      <td>{{ $domain->updated_at }}</td>
+      <th scope="row">{{ $url->id }}</th>
+        <td>
+            <a class="nav-link " href="/urls/{{$url->id}}">{{ $url->name }}</a>
+        </td>
+      <td>{{ $url->created_at }}</td>
+      <td>{{ $url->updated_at }}</td>
     </tr>
     @endforeach
   </tbody>
 </table>
-  </body>
-</html>
+@endsection

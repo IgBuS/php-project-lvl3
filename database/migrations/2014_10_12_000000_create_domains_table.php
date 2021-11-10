@@ -13,8 +13,8 @@ class CreateDomainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('domains', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('urls', function (Blueprint $table) {
+            $table->id();
             $table->string('name');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();

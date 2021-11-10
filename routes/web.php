@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Redirector;
+use App\Http\Controllers\UrlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,18 +22,4 @@ Route::get('/', function () {
     return view('main');
 })->name('main');
 
-Route::post('/domains', function (Request $request) {
-    $domain = Request::input('domain');
-    $url = $domain['name'];
-    $creatTime = Carbon::now()->toDateTimeString();
-    $id = DB::table('domains')->insertGetId(
-        ['name' => $url, 'updated_at' => $creatTime, 'created_at' => $creatTime]
-    );
-    return redirect()->route('main');
-});
-
-Route::get('/domains', function () {
-    //$domains = DB::select('select * from domains');
-    $domains = DB::table('domains')->get();
-    return view('domains_index', ['domains' => $domains]);
-})->name('domains');
+Route::resource('urls', UrlController::class);

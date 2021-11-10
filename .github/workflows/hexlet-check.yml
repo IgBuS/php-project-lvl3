@@ -1,4 +1,4 @@
-name: hexlet-check
+name: check
 
 jobs:
   build:
@@ -6,5 +6,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Hexlet project check
-        uses: hexlet/project-action@release
+    - name: Setup project
+      run: make setup
+
+    - name: Check lint
+      run: make lint
+
+    - name: Execute tests (Unit and Feature tests) via PHPUnit
+      run: make test
