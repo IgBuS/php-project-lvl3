@@ -4,7 +4,7 @@ use Illuminate\Support\Str;
 
 
 $DATABASE_URL = parse_url(getenv('DATABASE_URL'));
-$host = $DATABASE_URL["host"] ?? 'pgsql';
+$host = $DATABASE_URL["host"] ?? 'localhost';
 $port = $DATABASE_URL["port"] ?? '5432';
 $database = $DATABASE_URL["path"] ? ltrim($DATABASE_URL["path"], '/') : 'homestead';
 $username = $DATABASE_URL["user"] ?? 'homestead';
