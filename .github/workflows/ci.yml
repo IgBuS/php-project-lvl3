@@ -7,7 +7,7 @@ jobs:
       image: kirschbaumdevelopment/laravel-test-runner:8.0
  
     services:
-      postgres:
+      pgsql:
         image: postgres
         env:
           POSTGRES_USER: homestead
