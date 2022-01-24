@@ -10,9 +10,9 @@ jobs:
       pgsql:
         image: postgres
         env:
-          POSTGRES_USER: homestead
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: secret
-          POSTGRES_DB: homestead
+          POSTGRES_DB: postgres
 
         volumes:
         - './pgdata/docker-entrypoint-initdb.d'
