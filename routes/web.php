@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Redirector;
 use App\Http\Controllers\UrlController;
+use App\Http\Controllers\CheckController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::get('/', function () {
 })->name('main');
 
 Route::resource('urls', UrlController::class);
+Route::resource('urls.checks', CheckController::class);

@@ -3,10 +3,54 @@
 @section('title', 'Page Title')
 
 @section('content')
-<div class="container-fluid">
-<p>Url's id: {{ $url->id }}</p>
-<p>Url's name: {{ $url->name }}</p>
-<p>Url's creation date and time {{ $url->created_at }}</p>
-<p>Url's update date and time {{ $url->updated_at }}</p>
-</div>
+<h1 class="display-3">Сайт: {{ $url->name }}</h1>
+<table class="table">
+
+  <tbody>
+    <tr>
+      <td>ID</td>
+      <td>{{ $url->id }}</td>
+    </tr>
+    <tr>
+      <td>Имя</td>
+      <td>{{ $url->name }}</td>
+    </tr>
+    <tr>
+      <td>Дата создания</td>
+      <td>{{ $url->updated_at }}</td>
+    </tr>
+  </tbody>
+</table>
+<form action="/urls/{{ $url->id }}/checks/" method="post" class="d-flex justify-content-center">
+@csrf
+<input type="hidden" name="url[id]" value="{{ $url->id }}">
+    <button type="submit" class="btn btn-lg btn-primary ml-3 px-5 text-uppercase">Запустить проверку</button>
+</form>
+
+<h1 class="display-3">Проверки</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Код ответа</th>
+      <th scope="col">h1</th>
+      <th scope="col">title</th>
+      <th scope="col">description</th>
+      <th scope="col">Дата создания</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach ($checks as $check)
+    <tr>
+      <td>{{ $check->id }}</td>
+      <td>{{ $check->status_code }}</td>
+      <td>{{ $check->h1 }}</td>
+      <td>{{ $check->title }}</td>
+      <td>{{ $check->description }}</td>
+      <td>{{ $check->created_at }}</td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
 @endsection

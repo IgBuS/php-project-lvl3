@@ -19,6 +19,16 @@ class CreateDomainsTable extends Migration
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
+
+        Schema::create('url_checks', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('url_id');
+            $table->bigInteger('status_code')->nullable();
+            $table->string('h1')->nullable();
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->timestamp('created_at');
+        });
     }
 
     /**
