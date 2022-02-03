@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Http;
 
 
 class CheckController extends Controller
@@ -42,9 +43,11 @@ class CheckController extends Controller
         $urlId = $request->input('url.id');
 
         $createTime = Carbon::now()->toDateTimeString();
+        $urlName = DB::table('urls')->where('id', $urlId)->value('name');
+        $response = Http::get($urlName);
 
         $checkId = DB::table('url_checks')->insertGetId(
-            ['url_id' => $urlId, 'created_at' => $createTime]
+            ['url_id' => $urlId, 'created_at' => $createTime, 'status_code' => $response->status()]
         );
         flash('Страница успешно проверена')->success();
         return redirect()->route('urls.show', ['url' => $urlId]);

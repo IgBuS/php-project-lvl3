@@ -23,7 +23,7 @@ class UrlController extends Controller
                    ->groupBy('url_id');
         
         $urls = DB::table('urls')
-                ->joinSub($latestChecks, 'latest_checks', function ($join) {
+                ->leftJoinSub($latestChecks, 'latest_checks', function ($join) {
                     $join->on('urls.id', '=', 'latest_checks.url_id');
                 })->get();
 
