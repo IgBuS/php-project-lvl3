@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Http;
+use DiDom\Document;
 
 
 class CheckController extends Controller
@@ -46,8 +47,20 @@ class CheckController extends Controller
         $urlName = DB::table('urls')->where('id', $urlId)->value('name');
         $response = Http::get($urlName);
 
+        $document = new Document($urlName, true);
+
+
+        $h1 = optional(optional($document->find('h1'))[0])->text();
+
+        $title = optional(optional($document->find('title'))[0])->text();
+
+        $content = optional(optional($document->find("meta[name='description']"))[0])->getAttribute('content');
+
+        
+
         $checkId = DB::table('url_checks')->insertGetId(
-            ['url_id' => $urlId, 'created_at' => $createTime, 'status_code' => $response->status()]
+            ['url_id' => $urlId, 'created_at' => $createTime, 'status_code' => $response->status(),
+            'h1' => $h1, 'title' => $title, 'description' => $content]
         );
         flash('Страница успешно проверена')->success();
         return redirect()->route('urls.show', ['url' => $urlId]);

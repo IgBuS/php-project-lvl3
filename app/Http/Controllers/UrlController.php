@@ -74,12 +74,13 @@ class UrlController extends Controller
                 ['name' => $normalizedUrl, 'updated_at' => $createTime, 'created_at' => $createTime]
             );
             flash('Url created successfuly')->success();
-            return redirect()->route('main');
+            return redirect()->route('urls.show', ['url' => $id]);
         } else {
             $id = DB::table('urls')->where('name', $normalizedUrl)->first()->id;
             flash('URL already exists')->warning();
             return redirect()->route('urls.edit', ['url' => $id]);
         }
+        
     }
 
     /**

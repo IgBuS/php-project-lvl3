@@ -25,8 +25,8 @@ class CreateDomainsTable extends Migration
             $table->bigInteger('url_id');
             $table->bigInteger('status_code')->nullable();
             $table->string('h1')->nullable();
-            $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->text('title')->nullable();
+            $table->text('description')->nullable();
             $table->timestamp('created_at');
         });
     }
