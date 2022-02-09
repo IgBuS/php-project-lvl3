@@ -9,7 +9,6 @@ use App\Models\Url;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 
-
 class UrlChechTest extends TestCase
 {
     public function testStore()
@@ -26,22 +25,19 @@ class UrlChechTest extends TestCase
             '{$factoryData} *' => Http::response("Hello", 200, ['Headers'])
         ]);
 
-        $this->post(route('urls.checks.store', ['url'=>$urlId]), ['url' => [
+        $this->post(route('urls.checks.store', ['url' => $urlId]), ['url' => [
             'id' => $urlId,
         ]]);
 
-        $response = $this->post(route('urls.checks.store', ['url'=>$urlId]), ['url' => [
+        $response = $this->post(route('urls.checks.store', ['url' => $urlId]), ['url' => [
             'id' => $urlId,
         ]]);
 
         $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
 
         $this->assertDatabaseHas('url_checks', [
             'url_id' => $urlId,
             'status_code' => 200
         ]);
-
-
     }
 }

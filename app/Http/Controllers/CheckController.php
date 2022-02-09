@@ -10,7 +10,6 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Http;
 use DiDom\Document;
 
-
 class CheckController extends Controller
 {
     /**
@@ -55,8 +54,6 @@ class CheckController extends Controller
         $title = optional(optional($document->find('title'))[0])->text();
 
         $content = optional(optional($document->find("meta[name='description']"))[0])->getAttribute('content');
-
-        
 
         $checkId = DB::table('url_checks')->insertGetId(
             ['url_id' => $urlId, 'created_at' => $createTime, 'status_code' => $response->status(),
