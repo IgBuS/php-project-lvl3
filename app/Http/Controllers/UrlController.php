@@ -54,8 +54,14 @@ class UrlController extends Controller
 
         $urlName = $request->input('url.name');
 
-        $parsedUrl = parse_url($urlName);
+        
 
+        if (!filter_var($urlName, FILTER_VALIDATE_URL)) {
+            flash('Адрес не прошел валидацию =(')->error();
+            return redirect()->route('main');
+        }
+        
+        $parsedUrl = parse_url($urlName);
         if (!isset($parsedUrl['scheme'])) {
             flash('The scheme is missed. Add the scheme, please!')->error();
             return redirect()->route('main');
