@@ -71,7 +71,7 @@ class UrlController extends Controller
             return redirect()->route('main');
         }
 
-        $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}/";
+        $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
 
         $createTime = Carbon::now()->toDateTimeString();
 
