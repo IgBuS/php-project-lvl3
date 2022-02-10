@@ -2,7 +2,7 @@ install:
 	composer install
 
 start:
-	vagrant up
+	./vendor/bin/sail up
 
 restart:
 	vagrant reload --provision 
