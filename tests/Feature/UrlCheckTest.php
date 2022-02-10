@@ -9,7 +9,7 @@ use App\Models\Url;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 
-class UrlChechTest extends TestCase
+class UrlCheckTest extends TestCase
 {
     public function testStore()
     {
