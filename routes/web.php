@@ -24,4 +24,4 @@ Route::get('/', function () {
 })->name('main');
 
 Route::resource('urls', UrlController::class);
-Route::resource('urls.checks', CheckController::class);
+Route::resource('urls.checks', CheckController::class)->shallow();
