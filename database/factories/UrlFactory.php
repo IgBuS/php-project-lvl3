@@ -14,7 +14,7 @@ class UrlFactory extends Factory
     public function definition()
     {
         $parsedUrl = parse_url($this->faker->url);
-        $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}/";
+        $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
         return [
             'name' => $normalizedUrl,
         ];
