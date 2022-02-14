@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Http;
 use DiDom\Document;
+use Exception;
 
 class CheckController extends Controller
 {
@@ -44,7 +45,12 @@ class CheckController extends Controller
 
         $createTime = Carbon::now()->toDateTimeString();
         $urlName = DB::table('urls')->where('id', $urlId)->value('name');
-        $response = Http::get($urlName);
+        try {
+            $response = Http::get($urlName);
+        } catch (Exception $e) {
+            flash($e->getMessage())->error();
+            return redirect()->route('urls.show', ['url' => $urlId]);
+        }
 
         $document = new Document($urlName, true);
 
