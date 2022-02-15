@@ -29,6 +29,22 @@ class UrlTest extends TestCase
         $response = $this->post(route('urls.store'), ['url' => $factoryData]);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
+
+        //long url test
+        $response = $this->post(route('urls.store'), ['url' => $factoryData]);
+        $response->assertSessionHasNoErrors();
+        $response->assertRedirect();
+    }
+
+    public function testLongUrl()
+    {
+        $factoryData = Url::factory()->make()->toArray();
+        $factoryData['name'] = str_pad("{$factoryData['name']}/",300,'h', STR_PAD_RIGHT);
+        echo $factoryData['name'];
+        //long url test
+        $response = $this->post(route('urls.store'), ['url' => $factoryData]);
+        $response->assertSessionHasErrors(["url.name"]);
+        $response->assertRedirect();
     }
 
     public function testShow()
