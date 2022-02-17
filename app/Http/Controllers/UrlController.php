@@ -49,7 +49,7 @@ class UrlController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'url.name' => 'required|max:250',
+            'url.name' => 'required|max:255',
         ]);
 
         $urlName = $request->input('url.name');
