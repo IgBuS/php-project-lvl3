@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UrlController extends Controller
 {
@@ -48,9 +49,19 @@ class UrlController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+/*         $request->validate([
+            'url.name' => 'required|max:255',
+        ]); */
+
+        $validator = Validator::make($request->all(), [
             'url.name' => 'required|max:255',
         ]);
+ 
+        if ($validator->fails()) {
+             return redirect()->route('main')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
 
         $urlName = $request->input('url.name');
 
