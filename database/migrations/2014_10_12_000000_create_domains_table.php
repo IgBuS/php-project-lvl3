@@ -16,14 +16,14 @@ class CreateDomainsTable extends Migration
     public function up()
     {
         Schema::create('urls', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
 
         Schema::create('url_checks', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->bigInteger('url_id');
             $table->bigInteger('status_code')->nullable();
             $table->string('h1')->nullable();
