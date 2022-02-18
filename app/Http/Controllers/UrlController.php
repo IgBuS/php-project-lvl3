@@ -52,10 +52,17 @@ class UrlController extends Controller
 /*         $request->validate([
             'url.name' => 'required|max:255',
         ]); */
+        $input = $request->all();
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'url.name' => 'required|max:255',
-        ]);
+        ];
+
+        $messages = [
+            'max' => 'the field url[name] is more than 255 chars',
+        ];
+
+        $validator = Validator::make($input, $rules, $messages);
  
         if ($validator->fails()) {
              return redirect()->route('main')
