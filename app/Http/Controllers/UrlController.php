@@ -59,7 +59,7 @@ class UrlController extends Controller
         ];
 
         $messages = [
-            'max' => 'the field url[name] is more than 255 chars',
+            'max' => 'Некорректный URL',
         ];
 
         $validator = Validator::make($input, $rules, $messages);
