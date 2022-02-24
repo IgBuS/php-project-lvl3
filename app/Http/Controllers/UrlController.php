@@ -26,7 +26,8 @@ class UrlController extends Controller
         $urls = DB::table('urls')
                 ->leftJoinSub($latestChecks, 'latest_checks', function ($join) {
                     $join->on('urls.id', '=', 'latest_checks.url_id');
-                })->get();
+                })->orderBy('urls.id', 'asc')
+                ->get();
 
         return view('domains_index', ['urls' => $urls]);
     }

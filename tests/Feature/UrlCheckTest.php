@@ -25,13 +25,9 @@ class UrlCheckTest extends TestCase
             '{$factoryData} *' => Http::response("Hello", "200", ['Headers'])
         ]);
 
-        $this->post(route('urls.checks.store', ['url' => $urlId]), ['url' => [
-            'id' => $urlId,
-        ]]);
+        $this->post(route('urls.checks.store', ['url' => $urlId]));
 
-        $response = $this->post(route('urls.checks.store', ['url' => $urlId]), ['url' => [
-            'id' => $urlId,
-        ]]);
+        $response = $this->post(route('urls.checks.store', ['url' => $urlId]));
 
         $response->assertSessionHasNoErrors();
 
