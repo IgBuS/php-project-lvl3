@@ -39,9 +39,8 @@ class CheckController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $urlId = $request->input('url.id');
+    public function store(Request $request, $urlId)
+    {   
 
         $createTime = Carbon::now()->toDateTimeString();
         $urlName = DB::table('urls')->where('id', $urlId)->value('name');
