@@ -40,7 +40,7 @@ class CheckController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $urlId)
-    {   
+    {
 
         $createTime = Carbon::now()->toDateTimeString();
         $urlName = DB::table('urls')->where('id', $urlId)->value('name');
@@ -64,10 +64,11 @@ class CheckController extends Controller
                 'h1' => $h1,
                 'title' => $title,
                 'description' => $content
-            ]);
+                ]
+            );
         } catch (Exception $e) {
-        flash($e->getMessage())->error();
-        return redirect()->route('urls.show', ['url' => $urlId]);
+            flash($e->getMessage())->error();
+            return redirect()->route('urls.show', ['url' => $urlId]);
         }
         flash('Страница успешно проверена')->success();
         return redirect()->route('urls.show', ['url' => $urlId]);

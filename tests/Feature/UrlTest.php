@@ -39,7 +39,7 @@ class UrlTest extends TestCase
     public function testLongUrl()
     {
         $factoryData = Url::factory()->make()->toArray();
-        $factoryData['name'] = str_pad("{$factoryData['name']}/",300,'h', STR_PAD_RIGHT);
+        $factoryData['name'] = str_pad("{$factoryData['name']}/", 300, 'h', STR_PAD_RIGHT);
 
         //long url test
         $response = $this->post(route('urls.store'), ['url' => $factoryData]);

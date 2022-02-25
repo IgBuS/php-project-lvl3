@@ -64,7 +64,7 @@ class UrlController extends Controller
         ];
 
         $validator = Validator::make($input, $rules, $messages);
- 
+
         if ($validator->fails()) {
              return redirect()->route('main')
                         ->withErrors($validator)
@@ -73,13 +73,13 @@ class UrlController extends Controller
 
         $urlName = $request->input('url.name');
 
-        
+
 
         if (!filter_var($urlName, FILTER_VALIDATE_URL)) {
             flash('Адрес не прошел валидацию =(')->error();
             return redirect()->route('main');
         }
-        
+
         $parsedUrl = parse_url($urlName);
         if (!isset($parsedUrl['scheme'])) {
             flash('The scheme is missed. Add the scheme, please!')->error();
