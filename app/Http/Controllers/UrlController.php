@@ -65,7 +65,7 @@ class UrlController extends Controller
 
 
 
-        if (!filter_var($urlName, FILTER_VALIDATE_URL)) {
+        if (filter_var($urlName, FILTER_VALIDATE_URL) != "true") {
             flash('Адрес не прошел валидацию =(')->error();
             return redirect()->route('main');
         }
@@ -91,9 +91,14 @@ class UrlController extends Controller
             flash('Url created successfuly')->success();
             return redirect()->route('urls.show', ['url' => $id]);
         } else {
-            $id = DB::table('urls')->where('name', $normalizedUrl)->first()->id;
-            flash('URL already exists')->warning();
-            return redirect()->route('urls.edit', ['url' => $id]);
+            try {
+                $id = DB::table('urls')->where('name', $normalizedUrl)->first()->id;
+                flash('URL already exists')->warning();
+                return redirect()->route('urls.edit', ['url' => $id]);
+            } catch (Exception $e) {
+                flash($e->getMessage())->error();
+                return redirect()->route('urls.show', ['url' => $urlId]);
+            }
         }
     }
 

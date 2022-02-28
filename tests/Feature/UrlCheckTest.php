@@ -22,7 +22,7 @@ class UrlCheckTest extends TestCase
 
         Http::fake([
             // Stub a JSON response for GitHub endpoints...
-            '{$factoryData} *' => Http::response("Hello", "200", ['Headers'])
+            '{$factoryData} *' => Http::response("Hello", 200, ['Headers'])
         ]);
 
         $this->post(route('urls.checks.store', ['url' => $urlId]));
@@ -33,7 +33,7 @@ class UrlCheckTest extends TestCase
 
         $this->assertDatabaseHas('url_checks', [
             'url_id' => $urlId,
-            'status_code' => "200"
+            'status_code' => 200
         ]);
     }
 }

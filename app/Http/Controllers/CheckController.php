@@ -17,6 +17,7 @@ class CheckController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  int  $urlId
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $urlId)
