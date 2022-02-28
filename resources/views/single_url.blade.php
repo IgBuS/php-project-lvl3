@@ -21,7 +21,7 @@
     </tr>
   </tbody>
 </table>
-<form action="/urls/{{ $url->id }}/checks/" method="post" class="d-flex justify-content-center">
+<form action="/urls/{{ $url->id }}/checks" method="post" class="d-flex justify-content-center">
 @csrf
     <button type="submit" class="btn btn-lg btn-primary ml-3 px-5 text-uppercase">Запустить проверку</button>
 </form>
