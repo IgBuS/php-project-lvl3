@@ -92,9 +92,9 @@ class UrlController extends Controller
             flash('Url created successfuly')->success();
             return redirect()->route('urls.show', ['url' => $id]);
         } else {
+            $id = DB::table('urls')->where('name', $normalizedUrl)->value('id');
             flash('URL already exists')->warning();
-            if (DB::table('urls')->where('name', $normalizedUrl)->first()->id) {
-                $id = DB::table('urls')->where('name', $normalizedUrl)->first()->id;
+            if ($id) {
                 return redirect()->route('urls.edit', ['url' => $id]);
             } else {
                 return redirect()->route('main');
