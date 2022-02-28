@@ -99,7 +99,6 @@ class UrlController extends Controller
             } else {
                 return redirect()->route('main');
             }
-            
         }
     }
 
