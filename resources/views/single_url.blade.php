@@ -34,8 +34,8 @@
       <th scope="col">ID</th>
       <th scope="col">Код ответа</th>
       <th scope="col">h1</th>
-      <th scope="col">title</th>
-      <th scope="col">description</th>
+      <th scope="col">Заголовок</th>
+      <th scope="col">Описание</th>
       <th scope="col">Дата создания</th>
     </tr>
   </thead>

@@ -4,6 +4,9 @@ install:
 start:
 	./vendor/bin/sail up
 
+test:
+	./vendor/bin/sail test
+
 restart:
 	vagrant reload --provision 
 

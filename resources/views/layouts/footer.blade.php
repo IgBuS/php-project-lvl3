@@ -2,7 +2,7 @@
     <div class="container-lg">
         <div class="text-center">
                 created by
-                <a href="https://hexlet.io/pages/about" target="_blank">Hexlet</a>
+                <a href="https://github.com/IgBuS" target="_blank">IgBuS</a>
         </div>
     </div>
 </footer>

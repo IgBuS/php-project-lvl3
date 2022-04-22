@@ -22,9 +22,9 @@
     </div>
     @endif
     @include('flash::message')
-        <div>
-            @yield('content')
-        </div>
+    <div class="container">
+        @yield('content')
+    </div>
     @include("layouts.footer")
 </body>
 </html>

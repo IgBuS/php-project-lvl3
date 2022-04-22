@@ -28,7 +28,7 @@ class UrlController extends Controller
                 ->leftJoinSub($latestChecks, 'latest_checks', function ($join) {
                     $join->on('urls.id', '=', 'latest_checks.url_id');
                 })->orderBy('urls.id', 'asc')
-                ->get();
+                ->paginate(15);
 
         return view('domains_index', ['urls' => $urls]);
     }
@@ -107,7 +107,7 @@ class UrlController extends Controller
     public function show($id)
     {
         $url = DB::table('urls')->find($id);
-        $checks = DB::table('url_checks')->where('url_id', '=', $id)->get();
+        $checks = DB::table('url_checks')->where('url_id', '=', $id)->orderByDesc('id')->get();
         return view('single_url', ['url' => $url, 'checks' => $checks]);
     }
 

@@ -7,9 +7,9 @@
   <thead>
     <tr>
       <th scope="col">№</th>
-      <th scope="col">Domain name</th>
-      <th scope="col">Created at</th>
-      <th scope="col">Updated at</th>
+      <th scope="col">URL сайта</th>
+      <th scope="col">Запись создана</th>
+      <th scope="col">Запись обновлена</th>
       <th scope="col">Дата последней проверки</th>
       
       
@@ -20,7 +20,7 @@
     <tr>
       <th scope="row">{{ $url->id }}</th>
         <td>
-            <a class="nav-link " href="/urls/{{$url->id}}">{{ $url->name }}</a>
+            <a class="link " href="/urls/{{$url->id}}">{{ $url->name }}</a>
         </td>
       <td>{{ $url->created_at }}</td>
       <td>{{ $url->updated_at }}</td>
@@ -29,4 +29,5 @@
     @endforeach
   </tbody>
 </table>
+{{ $urls->links() }}
 @endsection
