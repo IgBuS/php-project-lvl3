@@ -15,18 +15,15 @@ class UrlCheckTest extends TestCase
     {
         $factoryData = Url::factory()->make()->toArray();
         //$data = \Arr::only($factoryData, ['url']);
-
         $this->post(route('urls.store'), ['url' => $factoryData]);
         $this->assertDatabaseHas('urls', $factoryData);
         $urlId = DB::table('urls')->where('name', $factoryData)->value('id');
-
-        Http::fake();
-
-        $this->post(route('urls.checks.store', $urlId));
-
-        $response = Http::post(route('urls.checks.store', $urlId));
-
-        //$response->assertSessionHasNoErrors();
+        Http::fake([
+            "{$factoryData['name']}*" => Http::response([], 200, [])
+        ]);
+        //$response = Http::post(route('urls.checks.store', $urlId));
+        $response = $this->post(route('urls.checks.store', $urlId));
+        $response->assertSessionHasNoErrors();
 
         $this->assertDatabaseHas('url_checks', [
             'url_id' => $urlId,
