@@ -41,9 +41,6 @@ class UrlController extends Controller
      */
     public function store(Request $request)
     {
-/*         $request->validate([
-            'url.name' => 'required|max:255',
-        ]); */
         $input = $request->all();
 
         $rules = [
@@ -89,7 +86,7 @@ class UrlController extends Controller
             $id = DB::table('urls')->insertGetId(
                 ['name' => $normalizedUrl, 'updated_at' => $createTime, 'created_at' => $createTime]
             );
-            flash('Url created successfuly')->success();
+            flash('Страница успешно добавлена')->success();
             return redirect()->route('urls.show', ['url' => $id]);
         } else {
             $id = DB::table('urls')->where('name', $normalizedUrl)->value('id');
