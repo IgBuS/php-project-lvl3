@@ -19,7 +19,6 @@ class UrlTest extends TestCase
     public function testStore()
     {
         $factoryData = Url::factory()->make()->toArray();
-        //$data = \Arr::only($factoryData, ['url']);
 
         $response = $this->post(route('urls.store'), ['url' => $factoryData]);
         $response->assertSessionHasNoErrors();
