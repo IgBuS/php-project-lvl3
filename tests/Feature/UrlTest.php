@@ -23,16 +23,8 @@ class UrlTest extends TestCase
         $response = $this->post(route('urls.store'), ['url' => $factoryData]);
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
-
         $this->assertDatabaseHas('urls', $factoryData);
-        $response = $this->post(route('urls.store'), ['url' => $factoryData]);
-        $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
 
-        //long url test
-        $response = $this->post(route('urls.store'), ['url' => $factoryData]);
-        $response->assertSessionHasNoErrors();
-        $response->assertRedirect();
     }
 
     public function testLongUrl()
