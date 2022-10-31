@@ -11,7 +11,7 @@
                     <form action="/urls" method="post" class="d-flex justify-content-center">
                         @csrf
                             <input type="text" name="url[name]" value="" class="form-control form-control-lg" placeholder="https://www.example.com">
-                        <input type="submit" class="btn btn-lg btn-primary ml-3 px-5 text-uppercase" value='Check'>
+                        <input type="submit" class="btn btn-lg btn-primary ml-3 px-5 text-uppercase" value='Проверить'>
                     </form>
                 </div>
             </div>

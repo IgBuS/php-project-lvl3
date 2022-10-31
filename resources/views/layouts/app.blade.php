@@ -12,15 +12,6 @@
   </head>
 <body class="min-vh-100 d-flex flex-column">
     @include("layouts.header")
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
     @include('flash::message')
     <div class="container">
         @yield('content')
