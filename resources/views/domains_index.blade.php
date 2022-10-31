@@ -24,7 +24,11 @@
         </td>
       <td>{{ $url->created_at }}</td>
       <td>{{ $url->updated_at }}</td>
-      <td>{{ $url->last_check_created_at }}</td>
+      <td>
+          @if (array_key_exists($url->id, $latestChecks))
+            {{ $latestChecks[$url->id]}}
+          @endif  
+      </td>
     </tr>
     @endforeach
   </tbody>

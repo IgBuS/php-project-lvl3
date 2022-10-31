@@ -21,15 +21,15 @@ class UrlController extends Controller
     {
         $latestChecks = DB::table('url_checks')
                    ->select('url_id', DB::raw('MAX(created_at) as last_check_created_at'))
-                   ->groupBy('url_id');
+                   ->groupBy('url_id')
+                   ->pluck('last_check_created_at', 'url_id')
+                   ->toArray();
 
         $urls = DB::table('urls')
-                ->leftJoinSub($latestChecks, 'latest_checks', function ($join) {
-                    $join->on('urls.id', '=', 'latest_checks.url_id');
-                })->orderBy('urls.id', 'asc')
+                ->orderBy('urls.id', 'asc')
                 ->paginate(15);
 
-        return view('domains_index', ['urls' => $urls]);
+        return view('domains_index', ['urls' => $urls, 'latestChecks' => $latestChecks]);
     }
 
     /**
