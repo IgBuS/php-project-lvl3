@@ -40,7 +40,8 @@ class UrlTest extends TestCase
 
     public function testShow()
     {
-        $response = $this->get(route('urls.show', 1));
+        $urlId = Url::first()->id;
+        $response = $this->get(route('urls.show', $urlId));
         $response->assertOk();
     }
 }
