@@ -62,7 +62,7 @@ class UrlController extends Controller
 
 
 
-        if (filter_var($urlName, FILTER_VALIDATE_URL) != true) {
+        if ($validator->fails()) {
             flash('Адрес не прошел валидацию =(')->error();
             return redirect()->route('main');
         }
