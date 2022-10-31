@@ -29,7 +29,7 @@ class UrlController extends Controller
                 ->orderBy('urls.id', 'asc')
                 ->paginate(15);
 
-        return view('domains_index', ['urls' => $urls, 'latestChecks' => $latestChecks]);
+        return view('index', ['urls' => $urls, 'latestChecks' => $latestChecks]);
     }
 
     /**
@@ -104,7 +104,7 @@ class UrlController extends Controller
     {
         $url = DB::table('urls')->find($id);
         $checks = DB::table('url_checks')->where('url_id', '=', $id)->orderByDesc('id')->get();
-        return view('single_url', ['url' => $url, 'checks' => $checks]);
+        return view('show', ['url' => $url, 'checks' => $checks]);
     }
 
     /**
