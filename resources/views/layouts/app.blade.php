@@ -14,7 +14,11 @@
 <body class="min-vh-100 d-flex flex-column">
     @include("layouts.header")
     @include('flash::message')
-    @yield('content')
+    <div class="flex-grow-1">
+      <div class="container">
+        @yield('content')
+      </div>
+    </div>
     @include("layouts.footer")
 </body>
 </html>
