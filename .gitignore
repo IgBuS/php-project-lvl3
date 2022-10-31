@@ -6,6 +6,9 @@
 .env
 .env.backup
 .phpunit.result.cache
+.vagrant
+.vscode
+.DS_Store
 Homestead.json
 Homestead.yaml
 npm-debug.log
