@@ -25,6 +25,11 @@ class CheckController extends Controller
 
         $createTime = Carbon::now()->toDateTimeString();
         $urlName = DB::table('urls')->where('id', $urlId)->value('name');
+
+        if (!$urlName){
+            return response()->view('404', [], 404);
+        }
+        
         try {
             $response = Http::get($urlName);
 
