@@ -29,7 +29,7 @@ class CheckController extends Controller
         if (!$urlName){
             return response()->view('404', [], 404);
         }
-        
+
         try {
             $response = Http::get($urlName);
 
@@ -37,11 +37,11 @@ class CheckController extends Controller
             $document = new Document($response->body());
 
 
-            $h1 = optional(optional($document->find('h1'))[0])->text();
+            $h1 = optional(optional($document->first('h1')))->text();
 
-            $title = optional(optional($document->find('title'))[0])->text();
+            $title = optional(optional($document->first('title')))->text();
 
-            $content = optional(optional($document->find("meta[name='description']"))[0])->getAttribute('content');
+            $content = optional(optional($document->first("meta[name='description']")))->getAttribute('content');
 
             $checkId = DB::table('url_checks')->insertGetId(
                 ['url_id' => $urlId,
