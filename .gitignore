@@ -6,8 +6,8 @@
 .env
 .env.backup
 .phpunit.result.cache
-.vagrant
-.vscode
+.vagrant/
+.vscode/
 .DS_Store
 Homestead.json
 Homestead.yaml
