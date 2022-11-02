@@ -3,7 +3,10 @@
 @section('title', 'Page Title')
 
 @section('content')
-  <table class="table">
+
+<h1 class="mt-3">Сайты</h1>
+<div class="table-responsive">
+  <table class="table table-bordered table-hover text-nowrap" data-test="urls">
   <thead>
     <tr>
       <th scope="col">№</th>
@@ -33,5 +36,6 @@
     @endforeach
   </tbody>
 </table>
-{{ $urls->links() }}
+</div>
+<div class="d-flex align-items-center justify-content-center">{{ $urls->links() }}</div>
 @endsection

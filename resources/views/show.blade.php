@@ -3,8 +3,9 @@
 @section('title', 'Page Title')
 
 @section('content')
-<h1 class="display-3">Сайт: {{ $url->name }}</h1>
-<table class="table">
+<h1 class="mt-3">Сайт: {{ $url->name }}</h1>
+<div class="table-responsive">
+<table class="table table-bordered table-hover text-nowrap" data-test="url">
 
   <tbody>
     <tr>
@@ -21,14 +22,16 @@
     </tr>
   </tbody>
 </table>
-<form action="/urls/{{ $url->id }}/checks" method="post" class="d-flex justify-content-center">
+</div>
+<h2 class="mb-3 mt-5">Проверки</h2>
+
+<form action="/urls/{{ $url->id }}/checks" method="post" class="d-flex justify-content-left mb-3">
 @csrf
-    <input type="submit" class="btn btn-lg btn-primary ml-3 px-5 text-uppercase" value='Запустить проверку'>
+    <input type="submit" class="btn btn-primary" value='Запустить проверку'>
 </form>
 
-<h1 class="display-3">Проверки</h1>
-
-<table class="table">
+<div class="table-responsive">
+<table class="table table-bordered table-hover text-nowrap" data-test="checks">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -52,5 +55,6 @@
     @endforeach
   </tbody>
 </table>
-{{ $checks->links() }}
+</div>
+<div class="d-flex align-items-center justify-content-center">{{ $checks->links() }}<div>
 @endsection
