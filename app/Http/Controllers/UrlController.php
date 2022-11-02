@@ -60,16 +60,17 @@ class UrlController extends Controller
 
         $createTime = Carbon::now()->toDateTimeString();
 
-        if (DB::table('urls')->where('name', $normalizedUrl)->doesntExist()) {
-            $id = DB::table('urls')->insertGetId(
+        $urlId = DB::table('urls')->where('name', $normalizedUrl)->value('id');
+
+        if (!$urlId) {
+            $newUrlId = DB::table('urls')->insertGetId(
                 ['name' => $normalizedUrl, 'updated_at' => $createTime, 'created_at' => $createTime]
             );
             flash('Страница успешно добавлена')->success();
-            return redirect()->route('urls.show', ['url' => $id]);
+            return redirect()->route('urls.show', ['url' => $newUrlId]);
         } else {
-            $id = DB::table('urls')->where('name', $normalizedUrl)->value('id');
-            flash('URL already exists')->warning();
-            return redirect()->route('urls.edit', ['url' => $id]);
+            flash('Страница уже существует')->warning();
+            return redirect()->route('urls.edit', ['url' => $urlId]);
         }
     }
 
