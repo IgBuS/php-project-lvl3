@@ -11,14 +11,18 @@
                     <form action="/urls" method="post" class="row" required>
                         @csrf
                         <div class="col-8">
-                        <input
-                        type="text"
-                        name="url[name]"
-                        value=""
-                        class="form-control form-control-lg"
-                        placeholder="https://www.example.com"
-                        >
-                                    </div>
+                            <input
+                            type="text"
+                            class="form-control form-control-lg @error('url.name') is-invalid @enderror"
+                            name="url[name]"
+                            placeholder="https://example.com"
+                            value="{{old('url.name')}}">
+                            @error('url.name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                         <div class="col-2">
                             <input type="submit" class="btn btn-primary btn-lg ms-3 px-5 text-uppercase mx-3" value="Проверить">
                         </div>
