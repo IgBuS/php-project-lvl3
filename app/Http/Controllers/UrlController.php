@@ -43,28 +43,19 @@ class UrlController extends Controller
         $input = $request->all();
 
         $rules = [
-            'url.name' => 'required|max:255',
+            'url.name' => 'required|max:255|url',
         ];
 
         $messages = [
             'max' => 'Некорректный URL',
+            'url' => 'Некорректный URL',
             'required' => 'URL не должен быть пустым'
         ];
 
         $validated = $request->validate($rules, $messages);
 
         $urlName = $request->input('url.name');
-
         $parsedUrl = parse_url($urlName);
-        if (!isset($parsedUrl['scheme'])) {
-            flash('The scheme is missed. Add the scheme, please!')->error();
-            return redirect()->route('main');
-        }
-        if (!isset($parsedUrl['host'])) {
-            flash('The host is missed. Check the URL, please!')->error();
-            return redirect()->route('main');
-        }
-
         $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
 
         $createTime = Carbon::now()->toDateTimeString();
