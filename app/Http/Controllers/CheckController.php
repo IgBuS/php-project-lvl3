@@ -10,6 +10,9 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Http;
 use DiDom\Document;
 use Exception;
+use GuzzleHttp\Psr7;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\RequestException;
 
 class CheckController extends Controller
 {
@@ -31,10 +34,11 @@ class CheckController extends Controller
         }
 
         try {
-            $response = Http::get($urlName);
+            $client = new \GuzzleHttp\Client();
 
-            //$document = new Document($urlName, true);
-            $document = new Document($response->body());
+            $response = $client->request('GET', $urlName);
+
+            $document = new Document((string) $response->getBody());
 
 
             $h1 = optional(optional($document->first('h1')))->text();
@@ -46,12 +50,19 @@ class CheckController extends Controller
             $checkId = DB::table('url_checks')->insertGetId(
                 ['url_id' => $urlId,
                 'created_at' => $createTime,
-                'status_code' => $response->status(),
+                'status_code' => $response->getStatusCode(),
                 'h1' => $h1,
                 'title' => $title,
                 'description' => $content
                 ]
             );
+
+        } catch (ConnectException $e) {
+            flash(Psr7\Message::toString($e->getRequest()))->error();
+            return redirect()->route('urls.show', ['url' => $urlId]);
+        } catch (RequestException $e) {
+            flash(Psr7\Message::toString($e->getRequest()))->error();
+            return redirect()->route('urls.show', ['url' => $urlId]);
         } catch (Exception $e) {
             flash($e->getMessage())->error();
             return redirect()->route('urls.show', ['url' => $urlId]);
