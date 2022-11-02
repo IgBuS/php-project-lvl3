@@ -52,4 +52,5 @@
     @endforeach
   </tbody>
 </table>
+{{ $checks->links() }}
 @endsection
