@@ -48,24 +48,12 @@ class UrlController extends Controller
 
         $messages = [
             'max' => 'Некорректный URL',
+            'required' => 'URL не должен быть пустым'
         ];
 
-        $validator = Validator::make($input, $rules, $messages);
-
-        if ($validator->fails()) {
-             return redirect()->route('main')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
+        $validated = $request->validate($rules, $messages);
 
         $urlName = $request->input('url.name');
-
-
-
-        if ($validator->fails()) {
-            flash('Адрес не прошел валидацию =(')->error();
-            return redirect()->route('main');
-        }
 
         $parsedUrl = parse_url($urlName);
         if (!isset($parsedUrl['scheme'])) {
@@ -103,7 +91,14 @@ class UrlController extends Controller
     public function show($id)
     {
         $url = DB::table('urls')->find($id);
-        $checks = DB::table('url_checks')->where('url_id', '=', $id)->orderByDesc('id')->get();
+        if (!$url){
+            return response()->view('404', [], 404);
+        }
+        $checks = DB::table('url_checks')
+            ->where('url_id', '=', $id)
+            ->latest()
+            ->paginate(5);
+
         return view('show', ['url' => $url, 'checks' => $checks]);
     }
 
