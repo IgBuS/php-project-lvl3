@@ -85,9 +85,9 @@ class UrlController extends Controller
         $url = DB::table('urls')->find($id);
 
         abort_unless($url, 404);
-        
+
         $checks = DB::table('url_checks')
-            ->where('url_id', '=', $id)
+            ->where('url_id', $id)
             ->latest()
             ->paginate(5);
 
