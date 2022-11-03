@@ -57,11 +57,8 @@ class CheckController extends Controller
                 ]
             );
 
-        } catch (ConnectException $e) {
-            flash(Psr7\Message::toString($e->getRequest()))->error();
-            return redirect()->route('urls.show', ['url' => $urlId]);
-        } catch (RequestException $e) {
-            flash(Psr7\Message::toString($e->getRequest()))->error();
+        } catch (ConnectionException | RequestException $error) {
+            flash(Psr7\Message::toString($error->getRequest()))->error();
             return redirect()->route('urls.show', ['url' => $urlId]);
         } catch (Exception $e) {
             flash($e->getMessage())->error();
