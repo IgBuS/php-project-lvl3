@@ -28,10 +28,8 @@ class CheckController extends Controller
 
         $createTime = Carbon::now()->toDateTimeString();
         $urlName = DB::table('urls')->where('id', $urlId)->value('name');
-
-        if (!$urlName){
-            return response()->view('404', [], 404);
-        }
+        
+        abort_unless($urlName, 404);
 
         try {
             $client = new \GuzzleHttp\Client();
