@@ -9,6 +9,12 @@ use App\Models\Url;
 
 class UrlTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $factoryData = Url::factory()->create();
+    }
+
     public function testIndex()
     {
         $response = $this->get(route('urls.index'));
@@ -29,8 +35,7 @@ class UrlTest extends TestCase
 
     public function testLongUrl()
     {
-        $factoryData = Url::factory()->make()->toArray();
-        $factoryData['name'] = str_pad("{$factoryData['name']}/", 300, 'h', STR_PAD_RIGHT);
+        $factoryData = Url::factory()->longUrl();
 
         //long url test
         $response = $this->post(route('urls.store'), ['url' => $factoryData]);

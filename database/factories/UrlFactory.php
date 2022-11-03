@@ -16,7 +16,22 @@ class UrlFactory extends Factory
         $parsedUrl = parse_url($this->faker->url);
         $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
         return [
-            'name' => $normalizedUrl,
+            'name' => $normalizedUrl
+        ];
+    }
+
+    /**
+     * Define the model's state for long url.
+     *
+     * @return array
+     */
+    public function longUrl()
+    {
+        $parsedUrl = parse_url($this->faker->url);
+        $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
+        $longUrl = "{$normalizedUrl}/{$this->faker->text(300)}";
+        return [
+            'name' => $longUrl
         ];
     }
 }

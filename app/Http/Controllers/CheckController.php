@@ -10,9 +10,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Http;
 use DiDom\Document;
 use Exception;
-use GuzzleHttp\Psr7;
-use GuzzleHttp\Exception\ConnectException;
-use GuzzleHttp\Exception\RequestException;
+
 
 class CheckController extends Controller
 {
@@ -34,8 +32,8 @@ class CheckController extends Controller
         try {
             $client = new \GuzzleHttp\Client();
 
-            $response = $client->request('GET', $urlName);
-
+            $response = HTTP::get($urlName);
+            //$response = $client->request('GET', $urlName);
             $document = new Document((string) $response->getBody());
 
 
@@ -56,7 +54,7 @@ class CheckController extends Controller
             );
 
         } catch (ConnectionException | RequestException $error) {
-            flash(Psr7\Message::toString($error->getRequest()))->error();
+            flash($error->getMessage())->error();
             return redirect()->route('urls.show', ['url' => $urlId]);
         } catch (Exception $e) {
             flash($e->getMessage())->error();
