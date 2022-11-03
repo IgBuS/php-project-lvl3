@@ -1,11 +1,23 @@
 install:
 	composer install
 
+install-test:
+	composer install --no-scripts
+
 start:
 	./vendor/bin/sail up
 
+ci-test:
+	vendor/bin/phpunit tests/
+
 test:
 	./vendor/bin/sail test
+
+key:
+	php artisan key:generate
+
+migrate:
+	php artisan migrate
 
 restart:
 	vagrant reload --provision 
