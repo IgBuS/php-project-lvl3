@@ -23,5 +23,9 @@ Route::get('/', function () {
     return view('main');
 })->name('main');
 
-Route::resource('urls', UrlController::class);
-Route::resource('urls.checks', CheckController::class)->shallow();
+Route::resource('urls', UrlController::class)->only([
+    'index', 'store', 'show'
+]);
+Route::resource('urls.checks', CheckController::class)->shallow()->only([
+    'store'
+]);

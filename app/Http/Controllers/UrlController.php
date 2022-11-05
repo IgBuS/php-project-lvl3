@@ -70,7 +70,7 @@ class UrlController extends Controller
             return redirect()->route('urls.show', ['url' => $newUrlId]);
         } else {
             flash('Страница уже существует')->warning();
-            return redirect()->route('urls.edit', ['url' => $urlId]);
+            return redirect()->route('urls.show', ['url' => $urlId]);
         }
     }
 
@@ -92,21 +92,5 @@ class UrlController extends Controller
             ->paginate(5);
 
         return view('show', ['url' => $url, 'checks' => $checks]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $updateTime = Carbon::now()->toDateTimeString();
-        $affected = DB::table('urls')
-              ->where('id', $id)
-              ->update(['updated_at' => $updateTime]);
-        flash('URL already exists')->warning();
-        return redirect()->route('urls.show', ['url' => $id]);
     }
 }
