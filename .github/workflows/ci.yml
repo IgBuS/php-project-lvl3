@@ -23,9 +23,9 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      uses: ./
 
     - name: Install composer dependencies
+      uses: ./
       run: make install
   
     - name: Prepare Laravel Application
