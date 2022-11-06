@@ -64,7 +64,7 @@ class UrlController extends Controller
 
         if (!$urlId) {
             $newUrlId = DB::table('urls')->insertGetId(
-                ['name' => $normalizedUrl, 'updated_at' => $createTime, 'created_at' => $createTime]
+                ['name' => $normalizedUrl, 'created_at' => $createTime, 'updated_at' => $createTime]
             );
             flash('Страница успешно добавлена')->success();
             return redirect()->route('urls.show', ['url' => $newUrlId]);
