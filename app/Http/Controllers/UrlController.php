@@ -61,8 +61,9 @@ class UrlController extends Controller
 
         if ($validator->fails()) {
             return view('main')
-                    ->withErrors($validator)
-                    ->withInput($input);
+                    ->withErrors($validator) //->errors()
+                    ->withInput($input)
+                    ->setStatusCode(422);
         }
 
         $urlName = $request->input('url.name');
