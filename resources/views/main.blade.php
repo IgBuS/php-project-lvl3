@@ -13,7 +13,7 @@
             class="form-control form-control-lg @error('url.name') is-invalid @enderror"
             name="url[name]"
             placeholder="https://www.example.com"
-            value="{{old('url.name') ?? $input['url']['name'] }}">
+            value="{{$input['url']['name'] ?? old('url.name')}}">
             @error('url.name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
