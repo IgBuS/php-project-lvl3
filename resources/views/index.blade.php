@@ -7,29 +7,34 @@
 <h1 class="mt-3">Сайты</h1>
 <div class="table-responsive">
   <table class="table table-bordered table-hover text-nowrap" data-test="urls">
-  <thead>
+  <tbody>
     <tr>
       <th scope="col">№</th>
       <th scope="col">URL сайта</th>
-      <th scope="col">Запись создана</th>
       <th scope="col">Дата последней проверки</th>
+      <th scope="col">Код ответа</th>
       
       
     </tr>
-  </thead>
-  <tbody>
+
+
     @foreach ($urls as $url)
     <tr>
       <th scope="row">{{ $url->id }}</th>
         <td>
             <a class="link " href="/urls/{{$url->id}}">{{ $url->name }}</a>
         </td>
-      <td>{{ $url->created_at }}</td>
-      <td>
-          @if (array_key_exists($url->id, $latestChecks))
-            {{ $latestChecks[$url->id]}}
+        <td>
+          @if (array_key_exists($url->id, $latestChecksDates))
+          {{ $latestChecksDates[$url->id]}}
           @endif  
-      </td>
+          </td>
+
+          <td>
+          @if (array_key_exists($url->id, $latestChecksStatuses))
+          {{ $latestChecksStatuses[$url->id]}}
+          @endif  
+          </td>
     </tr>
     @endforeach
   </tbody>
