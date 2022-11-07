@@ -31,8 +31,8 @@
 </form>
 
 <div class="table-responsive">
-<table class="table table-bordered table-hover text-nowrap" data-test="checks">
-  <thead>
+<table class="table table-bordered table-hover" data-test="checks">
+<tbody>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Код ответа</th>
@@ -41,8 +41,6 @@
       <th scope="col">Описание</th>
       <th scope="col">Дата создания</th>
     </tr>
-  </thead>
-  <tbody>
     @foreach ($checks as $check)
     <tr>
       <td>{{ $check->id }}</td>
