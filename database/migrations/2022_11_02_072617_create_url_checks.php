@@ -20,7 +20,7 @@ class CreateUrlChecks extends Migration
             $table->string('h1')->nullable();
             $table->text('title')->nullable();
             $table->text('description')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at');
         });
     }
 
