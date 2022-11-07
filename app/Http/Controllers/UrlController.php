@@ -57,7 +57,15 @@ class UrlController extends Controller
             'required' => 'URL не должен быть пустым'
         ];
 
-        $validated = $request->validate($rules, $messages);
+        //$validated = $request->validate($rules, $messages);
+
+        $validator = Validator::make($input, $rules, $messages);
+
+        if ($validator->fails()) {
+            return view('main')
+                    ->withErrors($validator)
+                    ->withInput($input);
+        }
 
         $urlName = $request->input('url.name');
         $parsedUrl = parse_url($urlName);

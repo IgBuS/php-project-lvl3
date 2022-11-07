@@ -4,6 +4,7 @@
 <div class="col-12 col-md-10 col-lg-8 mx-auto border rounded-3 bg-light p-5 mt-3">
     <h1 class="display-3">Анализатор страниц</h1>
     <p class="lead">Бесплатно проверяйте сайты на SEO пригодность</p>
+
     <form action="/urls" method="post" class="row" required>
         @csrf
         <div class="col-8">
@@ -12,7 +13,7 @@
             class="form-control form-control-lg @error('url.name') is-invalid @enderror"
             name="url[name]"
             placeholder="https://www.example.com"
-            value="{{old('url.name')}}">
+            value="{{old('url.name') ?? $input['url']['name'] }}">
             @error('url.name')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
