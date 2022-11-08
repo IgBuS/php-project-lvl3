@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Str;
 
-
-$DATABASE_URL = getenv('DATABASE_URL') ?? parse_url(getenv('DATABASE_URL'));
+$DATABASE_URL = getenv('DATABASE_URL') ? parse_url(getenv('DATABASE_URL')) : [];
+$DATABASE_URL = parse_url(getenv('DATABASE_URL'));
 $host = $DATABASE_URL["host"] ?? env('DB_HOST', 'pgsql');
 $port = $DATABASE_URL["port"] ?? env('DB_PORT', '5432');
 $database = $DATABASE_URL["path"] ? ltrim($DATABASE_URL["path"], '/') : env('DB_DATABASE', 'postgres');
