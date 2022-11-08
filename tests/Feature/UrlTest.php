@@ -39,9 +39,7 @@ class UrlTest extends TestCase
 
         //long url test
         $response = $this->post(route('urls.store'), ['url' => $factoryData]);
-        $response->assertOk();
-        //$response->assertInvalid(['validation[url.name]']);
-        //$response->assertSessionHasErrors();
+        $response->assertStatus(422);
 
     }
 

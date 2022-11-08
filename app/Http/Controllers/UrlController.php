@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Redirector;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
@@ -58,12 +59,20 @@ class UrlController extends Controller
         ];
 
         $validator = Validator::make($input, $rules, $messages);
+        $errors = $validator->errors();
+        $viewErrorBag = new \Illuminate\Support\ViewErrorBag;
+        $viewErrorBag->__set('default', $errors);
 
         if ($validator->fails()) {
-            return view('main')
-                    ->withErrors($validator) //->errors()
-                    ->withInput($input)
-                    ->setStatusCode(422);
+            $data = [
+                'errors' => $viewErrorBag,
+                'input' => $input
+            ];
+            // return view('main')
+            //         ->withErrors($validator) //->errors()
+            //         ->withInput($input);
+            return response()
+                ->view('main',  $data, 422);
         }
 
         $urlName = $request->input('url.name');
