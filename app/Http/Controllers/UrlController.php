@@ -28,8 +28,7 @@ class UrlController extends Controller
                     ->toArray();
 
         $latestChecksStatuses = $latestChecks->pluck('status_code', 'url_id')
-                    ->toArray();           
-                   
+                    ->toArray();
 
         $urls = DB::table('urls')
                 ->orderBy('urls.id', 'asc')
@@ -60,7 +59,7 @@ class UrlController extends Controller
 
         $validator = Validator::make($input, $rules, $messages);
         $errors = $validator->errors();
-        $viewErrorBag = new \Illuminate\Support\ViewErrorBag;
+        $viewErrorBag = new \Illuminate\Support\ViewErrorBag();
         $viewErrorBag->__set('default', $errors);
 
         if ($validator->fails()) {
@@ -68,11 +67,8 @@ class UrlController extends Controller
                 'errors' => $viewErrorBag,
                 'input' => $input
             ];
-            // return view('main')
-            //         ->withErrors($validator) //->errors()
-            //         ->withInput($input);
             return response()
-                ->view('main',  $data, 422);
+                ->view('main', $data, 422);
         }
 
         $urlName = $request->input('url.name');

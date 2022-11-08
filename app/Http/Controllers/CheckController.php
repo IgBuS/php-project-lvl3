@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Http;
 use DiDom\Document;
 use Exception;
 
-
 class CheckController extends Controller
 {
     /**
@@ -26,7 +25,6 @@ class CheckController extends Controller
 
         $createTime = Carbon::now()->toDateTimeString();
         $urlName = DB::table('urls')->where('id', $urlId)->value('name');
-        
         abort_unless($urlName, 404);
 
         try {
@@ -52,7 +50,6 @@ class CheckController extends Controller
                 'description' => $content
                 ]
             );
-
         } catch (ConnectionException | RequestException $error) {
             flash($error->getMessage())->error();
             return redirect()->route('urls.show', ['url' => $urlId]);

@@ -30,7 +30,6 @@ class UrlTest extends TestCase
         $response->assertSessionHasNoErrors();
         $response->assertRedirect();
         $this->assertDatabaseHas('urls', $factoryData);
-
     }
 
     public function testLongUrl()
@@ -40,7 +39,6 @@ class UrlTest extends TestCase
         //long url test
         $response = $this->post(route('urls.store'), ['url' => $factoryData]);
         $response->assertStatus(422);
-
     }
 
     public function testShow()
