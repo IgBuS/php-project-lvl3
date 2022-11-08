@@ -45,7 +45,7 @@ class UrlTest extends TestCase
 
     public function testShow()
     {
-        $urlId = DB::table('urls')->first()->id;
+        $urlId = optional(DB::table('urls')->first())->id;
         $response = $this->get(route('urls.show', $urlId));
         $response->assertOk();
     }
