@@ -10,6 +10,9 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Http;
 use DiDom\Document;
 use Exception;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Client\RequestException;
+
 
 class CheckController extends Controller
 {

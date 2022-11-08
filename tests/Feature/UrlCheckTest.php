@@ -14,7 +14,6 @@ class UrlCheckTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->html = file_get_contents(__DIR__ . "/../fixtures/test.html");
     }
 
     public function testStore()
@@ -22,9 +21,10 @@ class UrlCheckTest extends TestCase
         $factoryData = Url::factory()->make()->toArray();
         $response = $this->post(route('urls.store'), ['url' => $factoryData]);
         $urlId = DB::table('urls')->where('name', $factoryData)->value('id');
+        $html = file_get_contents(__DIR__ . "/../fixtures/test.html");
 
         Http::fake([
-            '*' => Http::response($this->html, 200, [])
+            '*' => Http::response($html, 200, [])
         ]);
         $response = $this->post(route('urls.checks.store', $urlId));
         $response->assertSessionHasNoErrors();

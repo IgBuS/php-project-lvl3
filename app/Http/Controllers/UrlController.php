@@ -9,6 +9,7 @@ use Illuminate\Routing\Redirector;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Exception;
 
 class UrlController extends Controller
