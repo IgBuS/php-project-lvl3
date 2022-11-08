@@ -6,6 +6,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Url;
+use App\Models\LongUrl;
+use Illuminate\Support\Facades\DB;
 
 class UrlTest extends TestCase
 {
@@ -34,7 +36,7 @@ class UrlTest extends TestCase
 
     public function testLongUrl()
     {
-        $factoryData = Url::factory()->longUrl();
+        $factoryData = LongUrl::factory()->make()->toArray();
 
         //long url test
         $response = $this->post(route('urls.store'), ['url' => $factoryData]);
@@ -43,7 +45,7 @@ class UrlTest extends TestCase
 
     public function testShow()
     {
-        $urlId = Url::first()->id;
+        $urlId = DB::table('urls')->first()->id;
         $response = $this->get(route('urls.show', $urlId));
         $response->assertOk();
     }
