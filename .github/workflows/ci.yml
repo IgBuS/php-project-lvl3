@@ -33,8 +33,7 @@ jobs:
   
     - name: Prepare Laravel Application
       run: |
-        cp .env.ci .env
-        make key
+        make setup
         make migrate
   
     - name: Run Testsuite

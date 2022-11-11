@@ -13,7 +13,8 @@ ci-test:
 test:
 	./vendor/bin/sail test
 
-key:
+setup:
+	cp .env.ci .env
 	php artisan key:generate
 
 migrate:
