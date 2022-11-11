@@ -67,7 +67,7 @@ class UrlController extends Controller
                 'errors' => $viewErrorBag,
                 'input' => $input
             ];
-        /** @var  \Illuminate\Routing\Router  $view */
+        /** @var  \Illuminate\Support\Facades\Response  $view */
             $view = response();
             return $view
                 ->view('main', $data, 422);
