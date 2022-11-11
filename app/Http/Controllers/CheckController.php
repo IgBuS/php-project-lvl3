@@ -33,7 +33,6 @@ class CheckController extends Controller
             $client = new \GuzzleHttp\Client();
 
             $response = HTTP::get($urlName);
-            //$response = $client->request('GET', $urlName);
             $document = new Document((string) $response->getBody());
 
 

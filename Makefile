@@ -35,3 +35,6 @@ build:
 	npm run build
 	./vendor/bin/sail artisan optimize
 	./vendor/bin/sail artisan migrate
+
+phpstan:
+	composer exec phpstan
