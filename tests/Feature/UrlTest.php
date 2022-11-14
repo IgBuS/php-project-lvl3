@@ -12,7 +12,7 @@ class UrlTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $factoryData = Url::factory()->create();
+        Url::factory()->create();
     }
 
     public function testIndex()
