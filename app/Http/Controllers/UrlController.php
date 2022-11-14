@@ -73,7 +73,7 @@ class UrlController extends Controller
                 ->view('main', $data, 422);
         }
 
-        $urlName = $request->input('url.name');
+        $urlName = strtolower($request->input('url.name'));
         $parsedUrl = parse_url($urlName);
         $normalizedUrl = "{$parsedUrl['scheme']}://{$parsedUrl['host']}";
 

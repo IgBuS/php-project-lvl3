@@ -30,8 +30,6 @@ class CheckController extends Controller
         abort_unless($urlName, 404);
 
         try {
-            $client = new \GuzzleHttp\Client();
-
             $response = HTTP::get($urlName);
             $document = new Document((string) $response->getBody());
 
@@ -42,7 +40,7 @@ class CheckController extends Controller
 
             $content = optional(optional($document->first("meta[name='description']")))->getAttribute('content');
 
-            $checkId = DB::table('url_checks')->insertGetId(
+            DB::table('url_checks')->insertGetId(
                 ['url_id' => $urlId,
                 'created_at' => $createTime,
                 'status_code' => $response->getStatusCode(),
