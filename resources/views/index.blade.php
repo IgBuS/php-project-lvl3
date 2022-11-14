@@ -22,7 +22,7 @@
     <tr>
       <th scope="row">{{ $url->id }}</th>
         <td>
-            <a class="link " href="/urls/{{$url->id}}">{{ $url->name }}</a>
+            <a class="link " href="{{route('urls.show', ['url' => $url->id])}}">{{ $url->name }}</a>
         </td>
         <td>
           @if (array_key_exists($url->id, $latestChecksDates))

@@ -8,7 +8,7 @@
             <p class="lead">
                 Кажется, страница, которую вы ищите - не существует. Очень жаль(
             </p>
-            <a href="/" class="btn btn-primary">На главную</a>
+            <a href="{{roure('main')}}" class="btn btn-primary">На главную</a>
         </div>
     </div>
 @endsection
