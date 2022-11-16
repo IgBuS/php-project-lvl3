@@ -21,20 +21,24 @@ class UrlController extends Controller
     public function index()
     {
         $latestChecks = DB::table('url_checks')
-                   ->select('url_id', DB::raw('MAX(created_at) as last_check_created_at'), 'status_code')
-                   ->groupBy('url_id', 'status_code');
+            ->select('url_id', DB::raw('MAX(created_at) as last_check_created_at'), 'status_code')
+            ->groupBy('url_id', 'status_code');
 
         $latestChecksDates = $latestChecks->pluck('last_check_created_at', 'url_id')
-                    ->toArray();
+            ->toArray();
 
         $latestChecksStatuses = $latestChecks->pluck('status_code', 'url_id')
-                    ->toArray();
+            ->toArray();
 
         $urls = DB::table('urls')
-                ->orderBy('urls.id', 'asc')
-                ->paginate(15);
+            ->orderBy('urls.id', 'asc')
+            ->paginate(15);
 
-        return view('index', ['urls' => $urls, 'latestChecksDates' => $latestChecksDates, 'latestChecksStatuses' => $latestChecksStatuses]);
+        return view('index', [
+            'urls' => $urls,
+            'latestChecksDates' => $latestChecksDates,
+            'latestChecksStatuses' => $latestChecksStatuses
+        ]);
     }
 
     /**
